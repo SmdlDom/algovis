@@ -2,21 +2,21 @@ import React from 'react';
 import { connect } from 'react-redux'
 import {HeaderContainer, LogoContainer, OptionLink, HeaderOptionsContainer} from "./header.styles";
 import {setAlgoType} from "../../../redux/globalEnv/globalEnv.actions";
-import {AlgoType} from "../../../redux/globalEnv/globalEnv.types";
+import {AlgoTypes} from "../../../redux/globalEnv/globalEnv.types";
 
 
 const Header = ({ setAlgoType }) => {
 
-	const handleSelection = event => {
+	const handleAlgoTypeSelection = event => {
 		setAlgoType(event.target.id);
 	}
 
 	return <HeaderContainer>
-		<LogoContainer id={AlgoType.None} onClick={handleSelection} to='/'>
+		<LogoContainer id={AlgoTypes.None} onClick={handleAlgoTypeSelection} to='/'>
 			Insert nice logo here
 		</LogoContainer>
 		<HeaderOptionsContainer>
-			<OptionLink id={AlgoType.SORT} onClick={handleSelection} to='/sort'>
+			<OptionLink id={AlgoTypes.SORT} onClick={handleAlgoTypeSelection} to='/sort'>
 				SORT
 			</OptionLink>
 		</HeaderOptionsContainer>

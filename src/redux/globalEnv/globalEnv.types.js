@@ -3,7 +3,7 @@ export const GlobalEnvActionTypes = {
 	SET_ALGO_TYPE: 'SET_ALGO_TYPE'
 }
 
-export const AlgoType = {
+export const AlgoTypes = {
 	NONE: '',
 	SORT: 'SORT'
 }

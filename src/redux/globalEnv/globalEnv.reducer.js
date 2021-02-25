@@ -1,8 +1,8 @@
-import { GlobalEnvActionTypes } from "./globalEnv.types";
+import {AlgoTypes, GlobalEnvActionTypes} from "./globalEnv.types";
 
 const INITIAL_STATE = {
 	speed: 1,
-	algoType: ''
+	algoType: AlgoTypes.NONE
 }
 
 const globalEnvReducer = (state = INITIAL_STATE, action) => {

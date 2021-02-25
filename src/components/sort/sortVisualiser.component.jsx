@@ -1,14 +1,52 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import {OptionsContainer} from "../common/option/optionsContainer/optionsContainer.styles.";
 import OptionButton from "../common/option/optionButton/optionButton.component";
+import {setSortType} from "../../redux/sortEnv/sortEnv.actions";
+import {connect} from "react-redux";
+import {SortTypes} from "../../redux/sortEnv/sortEnv.types";
+import {fillArray} from "../../algo/helpers";
 
 
+const amountOfOptions = 2;
 
-const SortVisualiser = () => (
-	<OptionsContainer>
+const SortVisualiser = ({ setSortType }) => {
+	let initSelected = fillArray(false, amountOfOptions);
+	initSelected[0] = true;
+	const [selected, setSelected] = useState(initSelected);
+
+	const handleSortTypeSelection = event => {
+		setSortType(event.target.name);
+		initSelected = fillArray(false, amountOfOptions);
+		initSelected[event.target.id] = true;
+		setSelected(initSelected);
+	}
+
+	return <OptionsContainer>
 		<OptionButton leftStart leftEnd>SHUFFLE</OptionButton>
-		<OptionButton>BUBBLE SORT</OptionButton>
+		<OptionButton
+			id={0}
+			name={SortTypes.BUBBLE_SORT}
+			onClick={handleSortTypeSelection}
+			selected = {selected[0]}
+		>
+			BUBBLE SORT
+		</OptionButton>
+		<OptionButton
+			id={1}
+			name={SortTypes.QUICK_SORT}
+			onClick={handleSortTypeSelection}
+			selected = {selected[1]}
+		>
+			QUICK SORT
+		</OptionButton>
 	</OptionsContainer>
-);
+};
 
-export default SortVisualiser;
+const mapDispatchToProps = dispatch => ({
+	setSortType: value => dispatch(setSortType(value))
+});
+
+export default connect(
+	null,
+	mapDispatchToProps
+)(SortVisualiser);
