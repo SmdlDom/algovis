@@ -1,7 +1,8 @@
 import { GlobalEnvActionTypes } from "./globalEnv.types";
 
 const INITIAL_STATE = {
-	speed: 1
+	speed: 1,
+	algoType: ''
 }
 
 const globalEnvReducer = (state = INITIAL_STATE, action) => {
@@ -10,6 +11,11 @@ const globalEnvReducer = (state = INITIAL_STATE, action) => {
 			return {
 				...state,
 				speed: action.payload
+			}
+		case GlobalEnvActionTypes.SET_ALGO_TYPE:
+			return {
+				...state,
+				algoType: action.payload
 			}
 		default:
 			return state
