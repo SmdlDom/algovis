@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import {headerHeight} from "../header/header.styles";
 import {footerHeight} from "../footer/footer.styles";
 import colorSheet from "../../../styles/colorSheet.styles";
-import {optionsBorderThickness, optionsHeight} from "../option/optionsContainer/optionsContainer.styles.";
 
 export const sideSizePercentage = 5;
 const controllerHeight = 40;
@@ -11,24 +10,28 @@ const borderRadius = 20;
 const gap = 5;
 
 /* Get the height of this component dynamically*/
-const getHeight = props => {
-	return props.windowHeight - headerHeight - footerHeight ;
+const getHeightFromProps = props => {
+	return getHeight(props.windowHeight);
+}
+
+const getHeight = windowHeight => {
+	return windowHeight - headerHeight - footerHeight ;
 }
 
 const getChildrenWidthPercentage = () => {
 	return (100 - 2*sideSizePercentage);
 }
 
-const getVisualiserHeight = props => {
-	return getHeight(props) - controllerHeight - 2*borderThickness - 2*gap;
+const getVisualiserHeightFromProps = props => {
+	return getVisualiserHeight(props.windowHeight);
 }
 
-export const getVisualiserCenterHeight = props => {
-	return getVisualiserHeight(props) - optionsHeight - optionsBorderThickness;
+export const getVisualiserHeight = windowHeight => {
+	return getHeight(windowHeight) - controllerHeight - 2*borderThickness - 2*gap;
 }
 
 export const VisualiserEnvContainer = styled.div`
-	height: ${getHeight}px;
+	height: ${getHeightFromProps}px;
 	width: 100%;
 	background-color: ${colorSheet.grey};
 	border-top: ${borderThickness}px solid ${colorSheet.border};
@@ -36,7 +39,7 @@ export const VisualiserEnvContainer = styled.div`
 `;
 
 export const VisualiserContainer = styled.div`
-	height: ${getVisualiserHeight}px;
+	height: ${getVisualiserHeightFromProps}px;
 	width: ${getChildrenWidthPercentage}%;
   margin-top: ${gap}px;
 	margin-left: ${sideSizePercentage}%;

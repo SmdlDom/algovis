@@ -1,15 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {createStructuredSelector} from "reselect";
 import {selectArray} from "../../../redux/sortEnv/sortEnv.selectors";
 import {connect} from "react-redux";
 import {SortDisplayContainer} from "./sortDisplay.styles";
-import {getVisualiserCenterHeight} from "../../common/visualiserEnv/visualiserEnv.styles";
-import useWindowDimensions from "../../../hooks/useWindowDimensions";
 
-const SortDisplay = ({array}) => {
-	const { height: windowHeight } = useWindowDimensions();
+const SortDisplay = ({array, height}) => {
 
-	return <SortDisplayContainer windowHeight={windowHeight}>
+	return <SortDisplayContainer height={height}>
 
 	</SortDisplayContainer>
 };

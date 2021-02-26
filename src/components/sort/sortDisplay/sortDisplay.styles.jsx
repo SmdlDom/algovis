@@ -1,14 +1,12 @@
 import styled from 'styled-components';
 import colorSheet from "../../../styles/colorSheet.styles";
-import {getVisualiserCenterHeight} from "../../common/visualiserEnv/visualiserEnv.styles";
-
 
 export const displayHeight = props => {
-	return Math.trunc(9 * getVisualiserCenterHeight(props) / 10);
+	return Math.trunc(9 * props.height/10);
 };
 
 const marginTop = props => {
-	return Math.trunc(getVisualiserCenterHeight(props)/20);
+	return Math.trunc(props.height/20);
 }
 
 export const SortDisplayContainer = styled.div`

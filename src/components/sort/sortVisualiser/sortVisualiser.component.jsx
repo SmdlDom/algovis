@@ -5,15 +5,13 @@ import {setSortType, shuffle} from "../../../redux/sortEnv/sortEnv.actions";
 import {connect} from "react-redux";
 import {SortTypes} from "../../../redux/sortEnv/sortEnv.types";
 import {fillArray} from "../../../algo/helpers";
-import {createStructuredSelector} from "reselect";
-import {selectArray} from "../../../redux/sortEnv/sortEnv.selectors";
 import {SortVisualiserContainer} from "./sortVisualiser.styles";
 import SortDisplay from "../sortDisplay/sortDisplay.component";
 
 
 const amountOfOptions = 2;
 
-const SortVisualiser = ({ setSortType, shuffle, array }) => {
+const SortVisualiser = ({ setSortType, shuffle, centerHeight }) => {
 	let initSelected = fillArray(false, amountOfOptions);
 	initSelected[0] = true;
 	const [selected, setSelected] = useState(initSelected);
@@ -51,7 +49,7 @@ const SortVisualiser = ({ setSortType, shuffle, array }) => {
 					QUICK SORT
 				</OptionButton>
 			</OptionsContainer>
-			<SortDisplay/>
+			<SortDisplay height={centerHeight}/>
 		</SortVisualiserContainer>
 };
 
