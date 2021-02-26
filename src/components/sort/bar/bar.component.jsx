@@ -1,10 +1,8 @@
 import React from 'react';
 import {BarContainer} from "./bar.styles";
 
-const Bar = ({ value, maxValue }) => {
-	<BarContainer>
-
-	</BarContainer>
+const Bar = (props) => {
+	return <BarContainer {...props } />
 };
 
 export default Bar;

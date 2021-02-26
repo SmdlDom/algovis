@@ -1,12 +1,16 @@
 import {SortEnvActionTypes, SortTypes} from "./sortEnv.types";
 import { genRandomArray } from '../../algo/sort/shuffle';
 
-const INITIAL_SIZE = 50;
+const INITIAL_SIZE = 25;
+const INITIAL_MAX_VAL = 50;
+const INITIAL_MIN_VAL = 10;
 
 const INITIAL_STATE = {
 	sortType: SortTypes.BUBBLE_SORT,
-	array: genRandomArray(INITIAL_SIZE),
-	arraySize: INITIAL_SIZE
+	array: genRandomArray(INITIAL_SIZE, INITIAL_MIN_VAL, INITIAL_MAX_VAL),
+	arraySize: INITIAL_SIZE,
+	arrayMaxVal: INITIAL_MAX_VAL,
+	arrayMinVal: INITIAL_MIN_VAL
 }
 
 const sortEnvReducer = (state = INITIAL_STATE, action) => {

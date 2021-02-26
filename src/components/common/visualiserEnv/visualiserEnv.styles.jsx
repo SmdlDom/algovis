@@ -3,7 +3,7 @@ import {headerHeight} from "../header/header.styles";
 import {footerHeight} from "../footer/footer.styles";
 import colorSheet from "../../../styles/colorSheet.styles";
 
-export const sideSizePercentage = 5;
+const sideSizePercentage = 5;
 const controllerHeight = 40;
 const borderThickness = 4;
 const borderRadius = 20;

@@ -6,7 +6,7 @@ import {
 	VisualiserContainer,
 	VisualiserEnvContainer,
 } from "./visualiserEnv.styles";
-import useWindowDimensions from "../../../hooks/useWindowDimensions";
+import useWindowDimensionsEffect from "../../../effects/useWindowDimensions.effect";
 import ControllerButton from "./controllerButton/controllerButton.component";
 import ControllerSlider from "./controllerSlider/controllerSlider.component";
 import SpeedDisplay from "./speedDisplay/speedDisplay.component";
@@ -15,11 +15,11 @@ import {optionsBorderThickness, optionsHeight} from "../option/optionsContainer/
 
 
 const VisualiserEnv = () => {
-	const { height: windowHeight } = useWindowDimensions();
+	const { height: windowHeight, width: windowWidth } = useWindowDimensionsEffect();
 	let visualiserCenterHeight =  getVisualiserHeight(windowHeight) - optionsHeight - optionsBorderThickness;
 
 	return (
-		<VisualiserEnvContainer windowHeight={windowHeight}>
+		<VisualiserEnvContainer windowHeight={windowHeight} windowWidth={windowWidth}>
 			<VisualiserContainer windowHeight={windowHeight}>
 				<Switch>
 					<Route

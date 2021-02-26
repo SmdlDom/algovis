@@ -49,7 +49,7 @@ const SortVisualiser = ({ setSortType, shuffle, centerHeight }) => {
 					QUICK SORT
 				</OptionButton>
 			</OptionsContainer>
-			<SortDisplay height={centerHeight}/>
+			<SortDisplay centerHeight={centerHeight}/>
 		</SortVisualiserContainer>
 };
 

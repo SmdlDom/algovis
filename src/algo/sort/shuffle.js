@@ -1,23 +1,11 @@
 
-export const genRandomArray = (size) => {
+export const genRandomArray = (size, min, max) => {
 	//init a sorted array
 	let array = []
 	for (let i = 0; i < size; i++) {
-		array[i] = i;
+		array[i] = Math.floor((Math.random() * (max - min) ) + min);
 	}
 
-	return shuffle(array);
+	return array
 }
 
-const shuffle = (arr) => {
-	let tmp, current, top = arr.length;
-	if (top) {
-		while(--top) {
-			current = Math.floor(Math.random() * (top + 1));
-			tmp = arr[current];
-			arr[current] = arr[top];
-			arr[top] = tmp;
-		}
-	}
-	return arr;
-}
