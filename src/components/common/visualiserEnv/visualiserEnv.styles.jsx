@@ -10,28 +10,20 @@ const borderRadius = 20;
 const gap = 5;
 
 /* Get the height of this component dynamically*/
-const getHeightFromProps = props => {
-	return getHeight(props.windowHeight);
-}
-
-const getHeight = windowHeight => {
-	return windowHeight - headerHeight - footerHeight ;
+const getHeight = props => {
+	return props.windowHeight - headerHeight - footerHeight ;
 }
 
 const getChildrenWidthPercentage = () => {
 	return (100 - 2*sideSizePercentage);
 }
 
-const getVisualiserHeightFromProps = props => {
-	return getVisualiserHeight(props.windowHeight);
-}
-
-export const getVisualiserHeight = windowHeight => {
-	return getHeight(windowHeight) - controllerHeight - 2*borderThickness - 2*gap;
+const getVisualiserHeight = props => {
+	return getHeight(props) - controllerHeight - 2*borderThickness - 2*gap;
 }
 
 export const VisualiserEnvContainer = styled.div`
-	height: ${getHeightFromProps}px;
+	height: ${getHeight}px;
 	width: 100%;
 	background-color: ${colorSheet.grey};
 	border-top: ${borderThickness}px solid ${colorSheet.border};
@@ -39,7 +31,7 @@ export const VisualiserEnvContainer = styled.div`
 `;
 
 export const VisualiserContainer = styled.div`
-	height: ${getVisualiserHeightFromProps}px;
+	height: ${getVisualiserHeight}px;
 	width: ${getChildrenWidthPercentage}%;
   margin-top: ${gap}px;
 	margin-left: ${sideSizePercentage}%;

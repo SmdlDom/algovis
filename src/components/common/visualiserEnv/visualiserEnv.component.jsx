@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import {
-	ControllersContainer, getVisualiserHeight,
+	ControllersContainer,
 	VisualiserContainer,
 	VisualiserEnvContainer,
 } from "./visualiserEnv.styles";
@@ -11,12 +11,9 @@ import ControllerButton from "./controllerButton/controllerButton.component";
 import ControllerSlider from "./controllerSlider/controllerSlider.component";
 import SpeedDisplay from "./speedDisplay/speedDisplay.component";
 import SortVisualiser from "../../sort/sortVisualiser/sortVisualiser.component";
-import {optionsBorderThickness, optionsHeight} from "../option/optionsContainer/optionsContainer.styles.";
-
 
 const VisualiserEnv = () => {
 	const { height: windowHeight, width: windowWidth } = useWindowDimensionsEffect();
-	let visualiserCenterHeight =  getVisualiserHeight(windowHeight) - optionsHeight - optionsBorderThickness;
 
 	return (
 		<VisualiserEnvContainer windowHeight={windowHeight} windowWidth={windowWidth}>
@@ -26,7 +23,7 @@ const VisualiserEnv = () => {
 						exact
 						path='/sort'
 						render={() => (
-							<SortVisualiser centerHeight={visualiserCenterHeight}/>
+							<SortVisualiser />
 						)}
 					/>
 				</Switch>

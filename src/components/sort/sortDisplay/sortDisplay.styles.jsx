@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import colorSheet from "../../../styles/colorSheet.styles";
 
-export const displayHeight = props => {
+const displayHeight = props => {
 	return Math.trunc(9 * props.centerHeight/10);
 };
 

@@ -1,5 +1,9 @@
-import React,{ useState } from 'react';
-import {OptionsContainer} from "../../common/option/optionsContainer/optionsContainer.styles.";
+import React,{ useState, useRef } from 'react';
+import {
+	optionsBorderThickness,
+	OptionsContainer,
+	optionsHeight
+} from "../../common/option/optionsContainer/optionsContainer.styles.";
 import OptionButton from "../../common/option/optionButton/optionButton.component";
 import {setSortType, shuffle} from "../../../redux/sortEnv/sortEnv.actions";
 import {connect} from "react-redux";
@@ -7,11 +11,15 @@ import {SortTypes} from "../../../redux/sortEnv/sortEnv.types";
 import {fillArray} from "../../../algo/helpers";
 import {SortVisualiserContainer} from "./sortVisualiser.styles";
 import SortDisplay from "../sortDisplay/sortDisplay.component";
+import {useContainerDimensions} from "../../../effects/useContainerDimension.effect";
 
 
 const amountOfOptions = 2;
 
-const SortVisualiser = ({ setSortType, shuffle, centerHeight }) => {
+const SortVisualiser = ({ setSortType, shuffle }) => {
+	const componentRef = useRef();
+	const { height } = useContainerDimensions(componentRef);
+
 	let initSelected = fillArray(false, amountOfOptions);
 	initSelected[0] = true;
 	const [selected, setSelected] = useState(initSelected);
@@ -23,7 +31,7 @@ const SortVisualiser = ({ setSortType, shuffle, centerHeight }) => {
 		setSelected(initSelected);
 	}
 
-	return <SortVisualiserContainer>
+	return <SortVisualiserContainer ref={componentRef}>
 			<OptionsContainer>
 				<OptionButton
 					leftStart
@@ -49,7 +57,7 @@ const SortVisualiser = ({ setSortType, shuffle, centerHeight }) => {
 					QUICK SORT
 				</OptionButton>
 			</OptionsContainer>
-			<SortDisplay centerHeight={centerHeight}/>
+			<SortDisplay centerHeight={height - optionsHeight - optionsBorderThickness}/>
 		</SortVisualiserContainer>
 };
 

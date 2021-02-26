@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import colorSheet from "../../../../styles/colorSheet.styles";
-import {visualiserHeight} from "../../visualiserEnv/visualiserEnv.styles";
 
 export const optionsHeight = 60;
 export const optionsBorderThickness = 4;

@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+
 export const useContainerDimensions = myRef => {
 	const getDimensions = () => ({
 		width: myRef.current.offsetWidth,
