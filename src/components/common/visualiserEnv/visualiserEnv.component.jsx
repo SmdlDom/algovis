@@ -6,7 +6,7 @@ import useWindowDimensions from "../../../hooks/useWindowDimensions";
 import ControllerButton from "./controllerButton/controllerButton.component";
 import ControllerSlider from "./controllerSlider/controllerSlider.component";
 import SpeedDisplay from "./speedDisplay/speedDisplay.component";
-import SortVisualiser from "../../sort/sortVisualiser.component";
+import SortVisualiser from "../../sort/sortVisualiser/sortVisualiser.component";
 
 
 const VisualiserEnv = () => {

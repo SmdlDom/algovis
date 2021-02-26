@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import {headerHeight} from "../header/header.styles";
 import {footerHeight} from "../footer/footer.styles";
 import colorSheet from "../../../styles/colorSheet.styles";
+import {optionsBorderThickness, optionsHeight} from "../option/optionsContainer/optionsContainer.styles.";
 
 export const sideSizePercentage = 5;
 const controllerHeight = 40;
@@ -18,14 +19,13 @@ const getChildrenWidthPercentage = () => {
 	return (100 - 2*sideSizePercentage);
 }
 
-export var visualiserHeight;
-
 const getVisualiserHeight = props => {
-	visualiserHeight = getHeight(props) - controllerHeight - 2*borderThickness - 2*gap;
-	return visualiserHeight;
+	return getHeight(props) - controllerHeight - 2*borderThickness - 2*gap;
 }
 
-
+export const getVisualiserCenterHeight = props => {
+	return getVisualiserHeight(props) - optionsHeight - optionsBorderThickness;
+}
 
 export const VisualiserEnvContainer = styled.div`
 	height: ${getHeight}px;
@@ -40,7 +40,7 @@ export const VisualiserContainer = styled.div`
 	width: ${getChildrenWidthPercentage}%;
   margin-top: ${gap}px;
 	margin-left: ${sideSizePercentage}%;
-	background-color: ${colorSheet.lighterGrey};
+	background-color: ${colorSheet.lightGrey};
   border: ${borderThickness}px solid ${colorSheet.border};
   border-bottom-width: 0;
 	border-top-left-radius: ${borderRadius}px;

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import {Link} from "react-router-dom";
 import colorSheet from "../../../styles/colorSheet.styles";
 
-const optionLinkHeight = `50px`;
+const optionLinkHeight = 50;
 export const headerHeight = 80;
 
 export const HeaderContainer = styled.header`
@@ -29,10 +29,10 @@ export const HeaderOptionsContainer = styled.div`
 
 export const OptionLink = styled(Link)`
 	width: 150px;
-	height: ${optionLinkHeight};
+	height: ${optionLinkHeight}px;
   margin: 0 10px;
   text-align: center;
-  line-height: ${optionLinkHeight};
+  line-height: ${optionLinkHeight}px;
 	border: 3px solid ${colorSheet.border};
 	border-radius: 20px;
 	font-weight: bold;
