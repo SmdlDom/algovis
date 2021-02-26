@@ -1,5 +1,7 @@
 export const SortEnvActionTypes = {
-	SET_SORT_TYPE: 'SET_SORT_TYPE'
+	SET_SORT_TYPE: 'SET_SORT_TYPE',
+	SHUFFLE: 'SHUFFLE',
+	SHUFFLE_SUCCESS: 'SHUFFLE_SUCCESS'
 }
 
 export const SortTypes = {

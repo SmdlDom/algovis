@@ -1,7 +1,7 @@
 import React,{ useState } from 'react';
 import {OptionsContainer} from "../common/option/optionsContainer/optionsContainer.styles.";
 import OptionButton from "../common/option/optionButton/optionButton.component";
-import {setSortType} from "../../redux/sortEnv/sortEnv.actions";
+import {setSortType, shuffle} from "../../redux/sortEnv/sortEnv.actions";
 import {connect} from "react-redux";
 import {SortTypes} from "../../redux/sortEnv/sortEnv.types";
 import {fillArray} from "../../algo/helpers";
@@ -9,7 +9,7 @@ import {fillArray} from "../../algo/helpers";
 
 const amountOfOptions = 2;
 
-const SortVisualiser = ({ setSortType }) => {
+const SortVisualiser = ({ setSortType, shuffle }) => {
 	let initSelected = fillArray(false, amountOfOptions);
 	initSelected[0] = true;
 	const [selected, setSelected] = useState(initSelected);
@@ -22,7 +22,13 @@ const SortVisualiser = ({ setSortType }) => {
 	}
 
 	return <OptionsContainer>
-		<OptionButton leftStart leftEnd>SHUFFLE</OptionButton>
+		<OptionButton
+			leftStart
+			leftEnd
+			onClick={shuffle}
+		>
+			SHUFFLE
+		</OptionButton>
 		<OptionButton
 			id={0}
 			name={SortTypes.BUBBLE_SORT}
@@ -43,7 +49,8 @@ const SortVisualiser = ({ setSortType }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-	setSortType: value => dispatch(setSortType(value))
+	setSortType: value => dispatch(setSortType(value)),
+	shuffle: () => dispatch(shuffle())
 });
 
 export default connect(
