@@ -2,8 +2,8 @@ import {SortEnvActionTypes, SortTypes} from "./sortEnv.types";
 import { genRandomArray } from '../../algo/sort';
 import {fillArray} from "../../algo/helpers";
 
-const INITIAL_SIZE = 15;
-const INITIAL_MAX_VAL = 50;
+const INITIAL_SIZE = 100;
+const INITIAL_MAX_VAL = 100;
 const INITIAL_MIN_VAL = 10;
 
 const INITIAL_STATE = {

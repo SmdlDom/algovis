@@ -10,4 +10,9 @@ export const selectSpeed = createSelector(
 export const selectAlgoType = createSelector(
 	[selectGlobalEnv],
 	globalEnv => globalEnv.algoType
-)
+);
+
+export const selectStop = createSelector(
+	[selectGlobalEnv],
+	globalEnv => globalEnv.stop
+);

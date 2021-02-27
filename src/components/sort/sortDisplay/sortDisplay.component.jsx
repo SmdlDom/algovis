@@ -3,7 +3,7 @@ import {createStructuredSelector} from "reselect";
 import {
 	selectArray,
 	selectArrayMaxVal,
-	selectCurrent, selectFinish,
+	selectCurrent, selectSortFinish,
 	selectSortedIndex,
 	selectSwap
 } from "../../../redux/sortEnv/sortEnv.selectors";
@@ -16,7 +16,7 @@ const SortDisplay = ({array, arrayMaxVal, selected, sorted, swap, finish, center
 	const componentRef = useRef();
 	let { width, height } = useContainerDimensions(componentRef);
 	let barWidth = Math.floor(width/array.length);
-	console.log(sorted);
+
 	return <SortDisplayContainer ref={componentRef} centerHeight={centerHeight}>
 		{array.map((val,idx) => (
 			<Bar
@@ -39,7 +39,7 @@ const mapStateToProps = createStructuredSelector({
 	selected: selectCurrent,
 	sorted: selectSortedIndex,
 	swap: selectSwap,
-	finish: selectFinish
+	finish: selectSortFinish
 });
 
 export default connect(

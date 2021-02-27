@@ -7,14 +7,16 @@ import {
 	selectArrayMaxVal,
 	selectArrayMinVal,
 	selectArraySize,
-	selectCurrent, selectFinish, selectSortedAmount, selectSortedIndex,
+	selectCurrent, selectSortFinish, selectSortedAmount, selectSortedIndex,
 	selectSortType
 } from "./sortEnv.selectors";
+import {setStop} from "../globalEnv/globalEnv.actions";
 
 function* doShuffle() {
 	let size = yield select(selectArraySize);
 	let minVal = yield select(selectArrayMinVal);
-	let maxVal = yield select(selectArrayMaxVal)
+	let maxVal = yield select(selectArrayMaxVal);
+	yield put(setStop(true));
 	yield put(shuffleSuccess(genRandomArray(size, minVal, maxVal)));
 }
 
@@ -25,7 +27,7 @@ function* doNextStep() {
 	let sortedAmount = yield select(selectSortedAmount);
 	let curr = yield select(selectCurrent);
 	//If the array is sorted we have nothing to do here
-	if (yield select(selectFinish)) return;
+	if (yield select(selectSortFinish)) return;
 	switch(sortType) {
 		case SortTypes.BUBBLE_SORT:
 			let payload = yield bubbleSortStep(array, sortedIndex, sortedAmount, curr);

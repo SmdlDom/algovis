@@ -50,7 +50,7 @@ export const selectCurrent = createSelector(
 	swap => swap[0]
 );
 
-export const selectFinish = createSelector(
+export const selectSortFinish = createSelector(
 	[selectSortEnv],
 	sortEnv => sortEnv.finish
 );

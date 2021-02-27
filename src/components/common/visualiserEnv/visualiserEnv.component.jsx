@@ -11,12 +11,12 @@ import ControllerButton from "./controllerButton/controllerButton.component";
 import ControllerSlider from "./controllerSlider/controllerSlider.component";
 import SpeedDisplay from "./speedDisplay/speedDisplay.component";
 import SortVisualiser from "../../sort/sortVisualiser/sortVisualiser.component";
-import {doNextStep} from "../../../redux/globalEnv/globalEnv.actions";
+import {doAll, doNextStep, doPlay, setStop} from "../../../redux/globalEnv/globalEnv.actions";
 import {connect} from "react-redux";
 
-const VisualiserEnv = ({ doNextStep }) => {
+const VisualiserEnv = ({ doNextStep, doPlay, doAll, setStop }) => {
 	const { height: windowHeight, width: windowWidth } = useWindowDimensionsEffect();
-	
+
 	return (
 		<VisualiserEnvContainer windowHeight={windowHeight} windowWidth={windowWidth}>
 			<VisualiserContainer windowHeight={windowHeight}>
@@ -31,12 +31,10 @@ const VisualiserEnv = ({ doNextStep }) => {
 				</Switch>
 			</VisualiserContainer>
 			<ControllersContainer>
-				<ControllerButton left>&#10094;&#10094;</ControllerButton>
-				<ControllerButton>&#10094;</ControllerButton>
-				<ControllerButton>&#9209;</ControllerButton>
-				<ControllerButton>&#9654;</ControllerButton>
+				<ControllerButton onClick={setStop} left>&#9209;</ControllerButton>
+				<ControllerButton onClick={doPlay}>&#9654;</ControllerButton>
 				<ControllerButton onClick={doNextStep}>&#10095;</ControllerButton>
-				<ControllerButton right>&#10095;&#10095;</ControllerButton>
+				<ControllerButton onClick={doAll} right>&#10095;&#10095;</ControllerButton>
 				<ControllerSlider />
 				<SpeedDisplay />
 			</ControllersContainer>
@@ -45,7 +43,10 @@ const VisualiserEnv = ({ doNextStep }) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-	doNextStep: () => dispatch(doNextStep())
+	doNextStep: () => dispatch(doNextStep()),
+	doPlay: () => dispatch(doPlay()),
+	doAll: () => dispatch(doAll()),
+	setStop: () => dispatch(setStop(true))
 });
 
 export default connect(
