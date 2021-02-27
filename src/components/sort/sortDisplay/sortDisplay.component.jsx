@@ -8,16 +8,17 @@ import {useContainerDimensions} from "../../../effects/useContainerDimension.eff
 
 const SortDisplay = ({array, arrayMaxVal, centerHeight}) => {
 	const componentRef = useRef();
-	const { height } = useContainerDimensions(componentRef);
+	let { width, height } = useContainerDimensions(componentRef);
+	let barWidth = Math.floor(width/array.length);
 
-	return <SortDisplayContainer centerHeight={centerHeight}>
+	return <SortDisplayContainer ref={componentRef} centerHeight={centerHeight}>
 		{array.map((val,idx) => (
 			<Bar
 				key={idx}
 				displayHeight={height}
-				width={100/array.length}
+				width={barWidth}
 				height={val*100/arrayMaxVal}
-				XPos={idx*100/array.length}
+				XPos={idx*barWidth}
 			/>
 		))}
 	</SortDisplayContainer>

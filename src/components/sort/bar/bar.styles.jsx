@@ -10,16 +10,17 @@ const getWidth = props => {
 }
 
 const getXPos = props => {
+	console.log(props.XPos);
 	return props.XPos;
 }
 
 export const BarContainer = styled.div`
 	height: ${getHeight}%;
-	width: ${getWidth}%;
+	width: ${getWidth}px;
 	background-color: ${colorSheet.primaryBlend};
-	border-top: 2px solid black;
-	border-right: 2px solid black;
-	//position: absolute;
-	//bottom: 0;
-	//left: ${getXPos};
+	border: 2px solid black;
+	position: absolute;
+	bottom: 0;
+	left: ${getXPos}px;
+  transition: 0.2s all ease;
 `;

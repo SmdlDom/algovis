@@ -19,6 +19,7 @@ const amountOfOptions = 2;
 const SortVisualiser = ({ setSortType, shuffle }) => {
 	const componentRef = useRef();
 	const { height } = useContainerDimensions(componentRef);
+	let centerHeight = height - optionsHeight - optionsBorderThickness;
 
 	let initSelected = fillArray(false, amountOfOptions);
 	initSelected[0] = true;
@@ -57,7 +58,7 @@ const SortVisualiser = ({ setSortType, shuffle }) => {
 					QUICK SORT
 				</OptionButton>
 			</OptionsContainer>
-			<SortDisplay centerHeight={height - optionsHeight - optionsBorderThickness}/>
+			<SortDisplay centerHeight={centerHeight}/>
 		</SortVisualiserContainer>
 };
 
