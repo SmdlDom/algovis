@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css }from 'styled-components';
 import colorSheet from "../../../styles/colorSheet.styles";
 
 const getHeight = props => {
@@ -10,10 +10,20 @@ const getWidth = props => {
 }
 
 const getXPos = props => {
-	console.log(props.XPos);
 	return props.XPos;
 }
 
+const isSelected = props => {
+	if (props.selected === true) {
+		return css`background-color: ${colorSheet.secondary}`
+	}
+}
+
+const isSorted = props => {
+	if (props.sorted === true) {
+		return css`background-color: ${colorSheet.primary}`
+	}
+}
 export const BarContainer = styled.div`
 	height: ${getHeight}%;
 	width: ${getWidth}px;
@@ -23,4 +33,6 @@ export const BarContainer = styled.div`
 	bottom: 0;
 	left: ${getXPos}px;
   transition: 0.2s all ease;
+	${isSelected}
+	${isSorted}
 `;

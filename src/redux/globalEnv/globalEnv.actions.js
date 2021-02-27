@@ -9,3 +9,7 @@ export const setAlgoType = value => ({
 	type: GlobalEnvActionTypes.SET_ALGO_TYPE,
 	payload: value
 })
+
+export const doNextStep = () => ({
+	type: GlobalEnvActionTypes.DO_NEXT_STEP
+})

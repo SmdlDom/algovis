@@ -12,4 +12,13 @@ export const shuffle = () => ({
 export const shuffleSuccess = arr => ({
 	type: SortEnvActionTypes.SHUFFLE_SUCCESS,
 	payload: arr
-})
+});
+
+export const doNextSortStep = () => ({
+	type: SortEnvActionTypes.DO_NEXT_STEP
+});
+
+export const doNextSortStepSuccess = (payload) => ({
+	type: SortEnvActionTypes.DO_NEXT_STEP_SUCCESS,
+	payload: payload
+});

@@ -7,11 +7,6 @@ export const selectSortType = createSelector(
 	sortEnv => sortEnv.sortType
 );
 
-export const selectArray = createSelector(
-	[selectSortEnv],
-	sortEnv => sortEnv.array
-);
-
 export const selectArraySize = createSelector(
 	[selectSortEnv],
 	sortEnv => sortEnv.arraySize
@@ -26,3 +21,38 @@ export const selectArrayMaxVal = createSelector(
 	[selectSortEnv],
 	sortEnv => sortEnv.arrayMaxVal
 );
+
+export const selectArray = createSelector(
+	[selectSortEnv],
+	sortEnv => sortEnv.array
+);
+
+export const selectSortedIndex = createSelector(
+	[selectSortEnv],
+	sortEnv => sortEnv.sortedIndex
+);
+
+//TODO figure why i cant compose with selectSortedIndex
+export const selectSortedAmount = createSelector(
+	[selectSortEnv],
+	sortEnv => sortEnv.sortedIndex.filter(val => val === 1).length
+)
+
+//Here, swap is a pair of index, the first element is the currently selected
+//index. If both element of the pair are the same index, there is no swap to execute.
+export const selectSwap = createSelector(
+	[selectSortEnv],
+	sortEnv => sortEnv.swap
+);
+
+export const selectCurrent = createSelector(
+	[selectSwap],
+	swap => swap[0]
+);
+
+export const selectFinish = createSelector(
+	[selectSortEnv],
+	sortEnv => sortEnv.finish
+);
+
+

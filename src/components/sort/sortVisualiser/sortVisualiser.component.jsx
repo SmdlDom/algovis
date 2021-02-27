@@ -16,10 +16,11 @@ import {useContainerDimensions} from "../../../effects/useContainerDimension.eff
 
 const amountOfOptions = 2;
 
-const SortVisualiser = ({ setSortType, shuffle }) => {
+const SortVisualiser = ({ setSortType, shuffle}) => {
 	const componentRef = useRef();
 	const { height } = useContainerDimensions(componentRef);
 	let centerHeight = height - optionsHeight - optionsBorderThickness;
+
 
 	let initSelected = fillArray(false, amountOfOptions);
 	initSelected[0] = true;

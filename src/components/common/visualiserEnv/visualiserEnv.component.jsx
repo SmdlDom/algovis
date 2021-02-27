@@ -11,10 +11,12 @@ import ControllerButton from "./controllerButton/controllerButton.component";
 import ControllerSlider from "./controllerSlider/controllerSlider.component";
 import SpeedDisplay from "./speedDisplay/speedDisplay.component";
 import SortVisualiser from "../../sort/sortVisualiser/sortVisualiser.component";
+import {doNextStep} from "../../../redux/globalEnv/globalEnv.actions";
+import {connect} from "react-redux";
 
-const VisualiserEnv = () => {
+const VisualiserEnv = ({ doNextStep }) => {
 	const { height: windowHeight, width: windowWidth } = useWindowDimensionsEffect();
-
+	
 	return (
 		<VisualiserEnvContainer windowHeight={windowHeight} windowWidth={windowWidth}>
 			<VisualiserContainer windowHeight={windowHeight}>
@@ -33,7 +35,7 @@ const VisualiserEnv = () => {
 				<ControllerButton>&#10094;</ControllerButton>
 				<ControllerButton>&#9209;</ControllerButton>
 				<ControllerButton>&#9654;</ControllerButton>
-				<ControllerButton>&#10095;</ControllerButton>
+				<ControllerButton onClick={doNextStep}>&#10095;</ControllerButton>
 				<ControllerButton right>&#10095;&#10095;</ControllerButton>
 				<ControllerSlider />
 				<SpeedDisplay />
@@ -42,4 +44,11 @@ const VisualiserEnv = () => {
 	);
 }
 
-export default VisualiserEnv;
+const mapDispatchToProps = dispatch => ({
+	doNextStep: () => dispatch(doNextStep())
+});
+
+export default connect(
+	null,
+	mapDispatchToProps
+)(VisualiserEnv);

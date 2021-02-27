@@ -6,3 +6,10 @@ export const fillArray = (value,size) => {
 	}
 	return result;
 }
+
+export const findHighestIndexOf = (array, value) =>  {
+	for (let i = array.length - 1; i > 0; i--) {
+		if (array[i] === value) return i;
+	}
+	return -1;
+}
