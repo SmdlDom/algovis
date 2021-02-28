@@ -33,7 +33,7 @@ function* doPlay(all) {
 				isStop = yield select(selectStop);
 				speed = yield select(selectSpeed);
 				if(!all) {
-					yield delay(500 / speed);
+					yield delay(200 / speed);
 				}
 			}
 			break;

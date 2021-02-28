@@ -6,17 +6,12 @@ import {AlgoTypes} from "../../../redux/globalEnv/globalEnv.types";
 
 
 const Header = ({ setAlgoType }) => {
-
-	const handleAlgoTypeSelection = event => {
-		setAlgoType(event.target.id);
-	}
-
 	return <HeaderContainer>
-		<LogoContainer id={AlgoTypes.None} onClick={handleAlgoTypeSelection} to='/'>
+		<LogoContainer onClick={()  => setAlgoType(AlgoTypes.NONE)} to='/'>
 			Insert nice logo here
 		</LogoContainer>
 		<HeaderOptionsContainer>
-			<OptionLink id={AlgoTypes.SORT} onClick={handleAlgoTypeSelection} to='/sort'>
+			<OptionLink to='/sort'>
 				SORT
 			</OptionLink>
 		</HeaderOptionsContainer>

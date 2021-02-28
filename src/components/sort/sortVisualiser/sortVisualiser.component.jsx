@@ -1,4 +1,4 @@
-import React,{ useState, useRef } from 'react';
+import React,{ useState, useEffect, useRef } from 'react';
 import {
 	optionsBorderThickness,
 	OptionsContainer,
@@ -12,16 +12,23 @@ import {fillArray} from "../../../algo/helpers";
 import {SortVisualiserContainer} from "./sortVisualiser.styles";
 import SortDisplay from "../sortDisplay/sortDisplay.component";
 import {useContainerDimensions} from "../../../effects/useContainerDimension.effect";
+import {setAlgoType} from "../../../redux/globalEnv/globalEnv.actions";
+import {AlgoTypes} from "../../../redux/globalEnv/globalEnv.types";
 
 
 const amountOfOptions = 2;
 
-const SortVisualiser = ({ setSortType, shuffle}) => {
+const SortVisualiser = ({ setAlgoType, setSortType, shuffle}) => {
 	const componentRef = useRef();
 	const { height } = useContainerDimensions(componentRef);
 	let centerHeight = height - optionsHeight - optionsBorderThickness;
 
+	//set the algoType to the store on mount
+	useEffect(() => {
+		setAlgoType(AlgoTypes.SORT);
+	}, [setAlgoType])
 
+	//Init the selected array
 	let initSelected = fillArray(false, amountOfOptions);
 	initSelected[0] = true;
 	const [selected, setSelected] = useState(initSelected);
@@ -66,6 +73,7 @@ const SortVisualiser = ({ setSortType, shuffle}) => {
 
 
 const mapDispatchToProps = dispatch => ({
+	setAlgoType: value => dispatch(setAlgoType(value)),
 	setSortType: value => dispatch(setSortType(value)),
 	shuffle: () => dispatch(shuffle())
 });

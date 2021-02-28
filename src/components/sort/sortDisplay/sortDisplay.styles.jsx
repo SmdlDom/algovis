@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import colorSheet from "../../../styles/colorSheet.styles";
 
 const displayHeight = props => {
 	return Math.trunc(9 * props.centerHeight/10);
@@ -13,6 +14,7 @@ export const SortDisplayContainer = styled.div`
 	width: 96%;
 	margin-left: 2%;
 	margin-top: ${marginTop}px;
-	//display: flex;
+	background-color: ${colorSheet.lighterGrey};
+	outline: 4px solid black;
 	position: relative;
 `
