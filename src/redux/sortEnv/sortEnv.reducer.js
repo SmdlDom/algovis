@@ -12,7 +12,8 @@ const INITIAL_STATE = {
 	arrayMaxVal: INITIAL_MAX_VAL,
 	arrayMinVal: INITIAL_MIN_VAL,
 	array: genRandomArray(INITIAL_SIZE, INITIAL_MIN_VAL, INITIAL_MAX_VAL),
-	sortedIndex: fillArray(-1, INITIAL_SIZE),
+	sortedIndex: fillArray(-1, INITIAL_SIZE), //A zero mean the element was swap, a one mean the element is sorted.
+	direction: true, //Bidirectional algorithm use this field to determine the direction. True mean to the right.
 	swap: [0,0],
 	finish: false
 }
@@ -29,6 +30,7 @@ const sortEnvReducer = (state = INITIAL_STATE, action) => {
 				...state,
 				array: action.payload,
 				sortedIndex: fillArray(-1, INITIAL_SIZE),
+				direction: true,
 				swap: [0,0],
 				finish: false
 			}

@@ -59,11 +59,11 @@ const SortVisualiser = ({ setAlgoType, setSortType, shuffle}) => {
 				</OptionButton>
 				<OptionButton
 					id={1}
-					name={SortTypes.QUICK_SORT}
+					name={SortTypes.COCKTAIL_SHAKER_SORT}
 					onClick={handleSortTypeSelection}
 					selected = {selected[1]}
 				>
-					QUICK SORT
+					COCKTAIL SHAKER SORT
 				</OptionButton>
 			</OptionsContainer>
 			<SortDisplay centerHeight={centerHeight}/>

@@ -36,7 +36,12 @@ export const selectSortedIndex = createSelector(
 export const selectSortedAmount = createSelector(
 	[selectSortEnv],
 	sortEnv => sortEnv.sortedIndex.filter(val => val === 1).length
-)
+);
+
+export const selectDirection = createSelector(
+	[selectSortEnv],
+	sortEnv => sortEnv.direction
+);
 
 //Here, swap is a pair of index, the first element is the currently selected
 //index. If both element of the pair are the same index, there is no swap to execute.

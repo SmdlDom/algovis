@@ -33,7 +33,7 @@ function* doNextStep() {
 			let payload = yield bubbleSortStep(array, sortedIndex, sortedAmount, curr);
 			yield put(doNextSortStepSuccess(payload))
 			break;
-		case SortTypes.QUICK_SORT:
+		case SortTypes.COCKTAIL_SHAKER_SORT:
 			break;
 		default:
 			break;

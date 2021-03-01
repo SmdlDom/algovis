@@ -8,5 +8,5 @@ export const SortEnvActionTypes = {
 
 export const SortTypes = {
 	BUBBLE_SORT: 'BUBBLE_SORT',
-	QUICK_SORT: 'QUICK_SORT'
+	COCKTAIL_SHAKER_SORT: 'COCKTAIL_SHAKER_SORT'
 }
