@@ -32,12 +32,6 @@ export const selectSortedIndex = createSelector(
 	sortEnv => sortEnv.sortedIndex
 );
 
-//TODO figure why i cant compose with selectSortedIndex
-export const selectSortedAmount = createSelector(
-	[selectSortEnv],
-	sortEnv => sortEnv.sortedIndex.filter(val => val === 1).length
-);
-
 export const selectDirection = createSelector(
 	[selectSortEnv],
 	sortEnv => sortEnv.direction

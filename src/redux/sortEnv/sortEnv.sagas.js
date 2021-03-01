@@ -1,39 +1,34 @@
 import {takeLatest, put, call, all, select} from 'redux-saga/effects'
 import {SortEnvActionTypes, SortTypes} from "./sortEnv.types";
-import {doNextSortStepSuccess, shuffleSuccess} from "./sortEnv.actions";
-import {bubbleSortStep, genRandomArray} from "../../algo/sort";
+import {doNextSortStepSuccess} from "./sortEnv.actions";
+import {bubbleSortStep, cocktailShakerSortStep} from "../../algo/sort";
 import {
 	selectArray,
-	selectArrayMaxVal,
-	selectArrayMinVal,
-	selectArraySize,
-	selectCurrent, selectSortFinish, selectSortedAmount, selectSortedIndex,
-	selectSortType
-} from "./sortEnv.selectors";
-import {setStop} from "../globalEnv/globalEnv.actions";
 
-function* doShuffle() {
-	let size = yield select(selectArraySize);
-	let minVal = yield select(selectArrayMinVal);
-	let maxVal = yield select(selectArrayMaxVal);
-	yield put(setStop(true));
-	yield put(shuffleSuccess(genRandomArray(size, minVal, maxVal)));
-}
+	selectCurrent, selectSortFinish, selectSortedIndex,
+	selectSortType, selectDirection
+} from "./sortEnv.selectors";
 
 function* doNextStep() {
+	//If the array is sorted we have nothing to do here
+	if (yield select(selectSortFinish)) return;
+
 	let sortType = yield select(selectSortType);
 	let array = yield select(selectArray);
 	let sortedIndex = yield select(selectSortedIndex);
-	let sortedAmount = yield select(selectSortedAmount);
 	let curr = yield select(selectCurrent);
-	//If the array is sorted we have nothing to do here
-	if (yield select(selectSortFinish)) return;
+	let direction = yield select(selectDirection);
+
+	let payload;
+
 	switch(sortType) {
 		case SortTypes.BUBBLE_SORT:
-			let payload = yield bubbleSortStep(array, sortedIndex, sortedAmount, curr);
+			payload = yield bubbleSortStep(array, sortedIndex, curr);
 			yield put(doNextSortStepSuccess(payload))
 			break;
 		case SortTypes.COCKTAIL_SHAKER_SORT:
+			payload = yield cocktailShakerSortStep(array, sortedIndex, curr, direction);
+			yield put(doNextSortStepSuccess(payload))
 			break;
 		default:
 			break;
@@ -47,16 +42,8 @@ export function* doNextStepStart() {
 	)
 }
 
-function* doShuffleStart() {
-	yield takeLatest(
-		SortEnvActionTypes.SHUFFLE,
-		doShuffle
-	);
-}
-
 export function* sortEnvSagas() {
 	yield all([
-		call(doShuffleStart),
 		call(doNextStepStart)
 	]);
 }

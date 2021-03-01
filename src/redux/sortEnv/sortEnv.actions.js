@@ -9,11 +9,6 @@ export const shuffle = () => ({
 	type: SortEnvActionTypes.SHUFFLE
 });
 
-export const shuffleSuccess = arr => ({
-	type: SortEnvActionTypes.SHUFFLE_SUCCESS,
-	payload: arr
-});
-
 export const doNextSortStep = () => ({
 	type: SortEnvActionTypes.DO_NEXT_STEP
 });

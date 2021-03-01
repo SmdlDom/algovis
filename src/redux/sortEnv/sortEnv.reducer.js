@@ -23,12 +23,16 @@ const sortEnvReducer = (state = INITIAL_STATE, action) => {
 		case SortEnvActionTypes.SET_SORT_TYPE:
 			return {
 				...state,
-				sortType: action.payload
+				sortType: action.payload,
+				sortedIndex: fillArray(-1, INITIAL_SIZE),
+				direction: true,
+				swap: [0,0],
+				finish: false
 			}
-		case SortEnvActionTypes.SHUFFLE_SUCCESS:
+		case SortEnvActionTypes.SHUFFLE:
 			return {
 				...state,
-				array: action.payload,
+				array: genRandomArray(INITIAL_SIZE, INITIAL_MIN_VAL, INITIAL_MAX_VAL),
 				sortedIndex: fillArray(-1, INITIAL_SIZE),
 				direction: true,
 				swap: [0,0],
@@ -39,6 +43,7 @@ const sortEnvReducer = (state = INITIAL_STATE, action) => {
 				...state,
 				array: action.payload.array,
 				sortedIndex: action.payload.sortedIndex,
+				direction: action.payload.direction,
 				swap: action.payload.swap,
 				finish: action.payload.finish
 			}
