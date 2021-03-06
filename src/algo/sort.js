@@ -12,12 +12,14 @@ export const genRandomArray = (size, min, max) => {
 };
 
 //The object return by sort algorithm step
-function SortStepReturn(array, sortedIndex,direction, swap, finish) {
+function SortStepReturn(array, sortedIndex, swap, finish, direction = true, partition = null, pivot = -1) {
 	this.array = array;
 	this.sortedIndex = sortedIndex;
 	this.direction = direction;
 	this.swap = swap;
 	this.finish = finish;
+	this.partition = partition;
+	this.pivot = pivot;
 }
 
 //Implementation of bubble sort
@@ -44,10 +46,10 @@ export const bubbleSortStep = (array, sortedIndex, curr, flip = false) => {
 		}
 
 		if(flip) { //Start new pass backward (for cocktailShakerSort)
-			return new SortStepReturn(array, sortedIndex, false, [curr,curr], finish);
+			return new SortStepReturn(array, sortedIndex,  [curr,curr], finish, false);
 		} else { //Start new pass from the beginning of the array
 
-			return new SortStepReturn(array, sortedIndex, true, [0, 0], finish);
+			return new SortStepReturn(array, sortedIndex, [0, 0], finish);
 		}
 	}
 
@@ -57,11 +59,11 @@ export const bubbleSortStep = (array, sortedIndex, curr, flip = false) => {
 		array[curr] = array[curr + 1];
 		array[curr + 1] = tmp
 		sortedIndex[curr + 1] = 0;
-		return new SortStepReturn(array, sortedIndex, true, [curr + 1,curr], false);
+		return new SortStepReturn(array, sortedIndex, [curr + 1,curr], false);
 	}
 
 	//Otherwise we just continue
-	return new SortStepReturn(array, sortedIndex, true, [++curr,curr], false);
+	return new SortStepReturn(array, sortedIndex, [++curr,curr], false);
 }
 
 //implementation of cocktail shaker sort
@@ -92,7 +94,7 @@ export const cocktailShakerSortStep = (array, sortedIndex, curr, direction) => {
 				finish = true;
 			}
 
-			return new SortStepReturn(array, sortedIndex, true, [curr,curr], finish);
+			return new SortStepReturn(array, sortedIndex, [curr,curr], finish, true);
 		}
 
 		//we do a swap
@@ -101,10 +103,10 @@ export const cocktailShakerSortStep = (array, sortedIndex, curr, direction) => {
 			array[curr] = array[curr - 1];
 			array[curr - 1] = tmp;
 			sortedIndex[curr - 1] = 0;
-			return new SortStepReturn(array, sortedIndex, false, [curr - 1, curr], false);
+			return new SortStepReturn(array, sortedIndex, [curr - 1, curr], false, false);
 		}
 
 		//Otherwise we just continue
-		return new SortStepReturn(array, sortedIndex, false, [--curr, curr], false);
+		return new SortStepReturn(array, sortedIndex, [--curr, curr], false, false);
 	}
 }

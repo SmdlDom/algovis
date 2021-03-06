@@ -6,7 +6,7 @@ import {
 	selectArray,
 
 	selectCurrent, selectSortFinish, selectSortedIndex,
-	selectSortType, selectDirection
+	selectSortType, selectDirection, selectPartition, selectPivot
 } from "./sortEnv.selectors";
 
 function* doNextStep() {
@@ -18,6 +18,8 @@ function* doNextStep() {
 	let sortedIndex = yield select(selectSortedIndex);
 	let curr = yield select(selectCurrent);
 	let direction = yield select(selectDirection);
+	let partition = yield select(selectPartition);
+	let pivot = yield select(selectPivot);
 
 	let payload;
 
@@ -29,6 +31,9 @@ function* doNextStep() {
 		case SortTypes.COCKTAIL_SHAKER_SORT:
 			payload = yield cocktailShakerSortStep(array, sortedIndex, curr, direction);
 			yield put(doNextSortStepSuccess(payload))
+			break;
+		case SortTypes.QUICK_SORT:
+			console.log("QUICK SORT");
 			break;
 		default:
 			break;

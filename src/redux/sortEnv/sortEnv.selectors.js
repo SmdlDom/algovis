@@ -27,6 +27,16 @@ export const selectArray = createSelector(
 	sortEnv => sortEnv.array
 );
 
+export const selectPartition = createSelector(
+	[selectSortEnv],
+	sortEnv => sortEnv.partition
+);
+
+export const selectPivot = createSelector(
+	[selectSortEnv],
+	sortEnv => sortEnv.pivot
+)
+
 export const selectSortedIndex = createSelector(
 	[selectSortEnv],
 	sortEnv => sortEnv.sortedIndex

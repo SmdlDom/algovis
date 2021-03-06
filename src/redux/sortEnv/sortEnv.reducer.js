@@ -2,7 +2,7 @@ import {SortEnvActionTypes, SortTypes} from "./sortEnv.types";
 import { genRandomArray } from '../../algo/sort';
 import {fillArray} from "../../algo/helpers";
 
-const INITIAL_SIZE = 25;
+const INITIAL_SIZE = 50;
 const INITIAL_MAX_VAL = 50;
 const INITIAL_MIN_VAL = 10;
 
@@ -12,6 +12,8 @@ const INITIAL_STATE = {
 	arrayMaxVal: INITIAL_MAX_VAL,
 	arrayMinVal: INITIAL_MIN_VAL,
 	array: genRandomArray(INITIAL_SIZE, INITIAL_MIN_VAL, INITIAL_MAX_VAL),
+	partition: [[0,INITIAL_SIZE -1]], //determine the partition of the array as slice
+	pivot: -1, //determine the pivot location
 	sortedIndex: fillArray(-1, INITIAL_SIZE), //A zero mean the element was swap, a one mean the element is sorted.
 	direction: true, //Bidirectional algorithm use this field to determine the direction. True mean to the right.
 	swap: [0,0],
@@ -24,6 +26,8 @@ const sortEnvReducer = (state = INITIAL_STATE, action) => {
 			return {
 				...state,
 				sortType: action.payload,
+				partition: [[0, INITIAL_SIZE -1]],
+				pivot: -1,
 				sortedIndex: fillArray(-1, INITIAL_SIZE),
 				direction: true,
 				swap: [0,0],
@@ -33,6 +37,8 @@ const sortEnvReducer = (state = INITIAL_STATE, action) => {
 			return {
 				...state,
 				array: genRandomArray(INITIAL_SIZE, INITIAL_MIN_VAL, INITIAL_MAX_VAL),
+				partition: [[0, INITIAL_SIZE -1]],
+				pivot: -1,
 				sortedIndex: fillArray(-1, INITIAL_SIZE),
 				direction: true,
 				swap: [0,0],
@@ -45,7 +51,9 @@ const sortEnvReducer = (state = INITIAL_STATE, action) => {
 				sortedIndex: action.payload.sortedIndex,
 				direction: action.payload.direction,
 				swap: action.payload.swap,
-				finish: action.payload.finish
+				finish: action.payload.finish,
+				partition: action.payload.partition,
+				pivot: action.payload.pivot
 			}
 		default:
 			return state
