@@ -1,7 +1,7 @@
 import {takeLatest, put, call, all, select} from 'redux-saga/effects'
 import {SortEnvActionTypes, SortTypes} from "./sortEnv.types";
 import {doNextSortStepSuccess} from "./sortEnv.actions";
-import {bubbleSortStep, cocktailShakerSortStep} from "../../algo/sort";
+import {bubbleSortStep, cocktailShakerSortStep, quickSortStep} from "../../algo/sort";
 import {
 	selectArray,
 
@@ -33,7 +33,8 @@ function* doNextStep() {
 			yield put(doNextSortStepSuccess(payload))
 			break;
 		case SortTypes.QUICK_SORT:
-			console.log("QUICK SORT");
+			payload = yield quickSortStep(array, sortedIndex, curr, partition, pivot);
+			yield put(doNextSortStepSuccess(payload));
 			break;
 		default:
 			break;

@@ -13,7 +13,7 @@ const INITIAL_STATE = {
 	arrayMinVal: INITIAL_MIN_VAL,
 	array: genRandomArray(INITIAL_SIZE, INITIAL_MIN_VAL, INITIAL_MAX_VAL),
 	partition: [[0,INITIAL_SIZE -1]], //determine the partition of the array as slice
-	pivot: -1, //determine the pivot location
+	pivot: INITIAL_SIZE - 1, //determine the pivot location
 	sortedIndex: fillArray(-1, INITIAL_SIZE), //A zero mean the element was swap, a one mean the element is sorted.
 	direction: true, //Bidirectional algorithm use this field to determine the direction. True mean to the right.
 	swap: [0,0],
@@ -27,7 +27,7 @@ const sortEnvReducer = (state = INITIAL_STATE, action) => {
 				...state,
 				sortType: action.payload,
 				partition: [[0, INITIAL_SIZE -1]],
-				pivot: -1,
+				pivot: INITIAL_SIZE - 1,
 				sortedIndex: fillArray(-1, INITIAL_SIZE),
 				direction: true,
 				swap: [0,0],
@@ -38,7 +38,7 @@ const sortEnvReducer = (state = INITIAL_STATE, action) => {
 				...state,
 				array: genRandomArray(INITIAL_SIZE, INITIAL_MIN_VAL, INITIAL_MAX_VAL),
 				partition: [[0, INITIAL_SIZE -1]],
-				pivot: -1,
+				pivot: INITIAL_SIZE - 1,
 				sortedIndex: fillArray(-1, INITIAL_SIZE),
 				direction: true,
 				swap: [0,0],

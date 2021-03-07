@@ -12,7 +12,8 @@ export const genRandomArray = (size, min, max) => {
 };
 
 //The object return by sort algorithm step
-function SortStepReturn(array, sortedIndex, swap, finish, direction = true, partition = null, pivot = -1) {
+function SortStepReturn(array, sortedIndex, swap, finish, direction = true,
+												partition = null, pivot = -1) {
 	this.array = array;
 	this.sortedIndex = sortedIndex;
 	this.direction = direction;
@@ -109,4 +110,64 @@ export const cocktailShakerSortStep = (array, sortedIndex, curr, direction) => {
 		//Otherwise we just continue
 		return new SortStepReturn(array, sortedIndex, [--curr, curr], false, false);
 	}
+}
+
+//implementation of quick sort
+export const quickSortStep = (array, sortedIndex, curr, partition, pivot) => {
+	//init a pass
+	if (curr === partition[0][0]) {
+		pivot = partition[0][0];
+	}
+
+	if(partition[0][0] === partition[0][1]) {
+		sortedIndex[partition[0][0]] = 1;
+		partition = partition.slice(1);
+
+		if(partition.length === 0) {
+			return new SortStepReturn(array, sortedIndex, [0,0], true,
+				true, partition, 0);
+		} else {
+			return new SortStepReturn(array, sortedIndex, [partition[0][0], partition[0][0]], false,
+				true, partition, partition[0][0]);
+		}
+	}
+
+	//end a pass
+	if (curr === partition[0][1]) {
+		let tmp1 = array[pivot];
+		let tmp2;
+		for (let i = pivot + 1;i <= curr; i++ ) {
+			tmp2 = array[i];
+			array[i] = tmp1;
+			tmp1 = tmp2;
+		}
+		array[pivot] = tmp1;
+		sortedIndex[pivot] = 1;
+
+		let newPartition;
+		if( pivot === partition[0][0]) { //edge case the pivot is place at the beginning of the partition
+			newPartition = [[pivot + 1, partition[0][1]]].concat(partition.slice(1));
+		} else if (pivot === partition[0][1]) { //edge case the pivot is place at the end of the partition
+			newPartition = [[partition[0][0], pivot - 1]].concat(partition.slice(1));
+		} else {
+		  newPartition = [[partition[0][0], pivot - 1], [pivot + 1, partition[0][1]]].concat(partition.slice(1));
+		}
+
+		return new SortStepReturn(array, sortedIndex, [newPartition[0][0],newPartition[0][0]], false,
+			true, newPartition, newPartition[0][0]);
+	}
+
+	let pivotValue = array[partition[0][1]];
+
+	//We do a swap
+	if (array[curr] < pivotValue) {
+		let tmp = array[curr];
+		array[curr] = array[pivot];
+		array[pivot] = tmp;
+		return new SortStepReturn(array, sortedIndex, [++curr, ++pivot],
+			false, true, partition, pivot);
+	}
+
+	//Otherwise we just continue
+	return  new SortStepReturn(array, sortedIndex, [++curr, curr], false, true, partition, pivot);
 }
